@@ -1,6 +1,25 @@
 @import url("https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,300italic,400,400italic,600");
 @import url("fontawesome-all.min.css");
 
+.clickable-article {
+	cursor: pointer;
+	/* make the background color a gradient from #f0f4f4 with 50% opacity to #ef8376 but with 50% opacity */
+	background: linear-gradient(to bottom, rgba(240, 244, 244, 0.4), rgba(240, 244, 244, 0.1));
+	border-radius: 10px;
+	padding: 10px;
+	box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.1);
+	height: 100%;
+}
+/* hover effect */
+.clickable-article:hover {
+	/* background-color: #ef8376; */
+	/* same background color but 50% opacity */
+	transition: background-color 0.15s ease-in-out, color 0.35s ease-in-out, border-bottom-color 0.35s ease-in-out;
+	background: linear-gradient(to bottom, rgba(240, 244, 244, 0.2), rgba(240, 244, 244, 0.1));
+	border-bottom-color: transparent;
+	cursor: pointer;
+}
+
 /*
 	Helios by HTML5 UP
 	html5up.net | @ajlkn
@@ -14,7 +33,7 @@ code, del, dfn, em, img, ins, kbd, q, s, samp,
 small, strike, strong, sub, sup, tt, var, b,
 u, i, center, dl, dt, dd, ol, ul, li, fieldset,
 form, label, legend, table, caption, tbody,
-tfoot, thead, tr, th, td, article, aside,
+tfoot, thead, tr, th, td, article, .clickable-article, aside,
 canvas, details, embed, figure, figcaption,
 footer, header, hgroup, menu, nav, output, ruby,
 section, summary, time, mark, audio, video {
@@ -25,7 +44,7 @@ section, summary, time, mark, audio, video {
 	font: inherit;
 	vertical-align: baseline;}
 
-article, aside, details, figcaption, figure,
+article, .clickable-article, aside, details, figcaption, figure,
 footer, header, hgroup, menu, nav, section {
 	display: block;}
 
@@ -1742,17 +1761,17 @@ input, select, textarea {
 
 		}
 
-/* Sections/Article */
+/* Sections/article */
 
 	section, article {
 		margin-bottom: 3em;
 	}
 
-		section > :last-child, section:last-child, article > :last-child, article:last-child {
+		section > :last-child, section:last-child, article > :last-child, article.last-child {
 			margin-bottom: 0;
 		}
 
-		section.special > header, section.special > footer, article.special > header, article.special > footer {
+		section.special > header, section.special > footer, article.special > header, article, .clickable-article.special > footer {
 			text-align: center;
 		}
 
@@ -2606,7 +2625,7 @@ input, select, textarea {
 				opacity: 0;
 			}
 
-			.carousel article .image {
+			.carousel article, .image {
 				position: relative;
 				left: -1em;
 				top: 0;
@@ -2615,7 +2634,7 @@ input, select, textarea {
 				margin-bottom: 3em;
 			}
 
-			.carousel article p {
+			.carousel article, p {
 				text-align: center;
 			}
 
@@ -2765,7 +2784,7 @@ input, select, textarea {
 				margin-bottom: 6em;
 			}
 
-		/* Section/Article */
+		/* Section/article */
 
 			section, article {
 				margin-bottom: 2em;
