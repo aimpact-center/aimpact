@@ -35,6 +35,11 @@
 			}, 100);
 		});
 
+	// Clickable Articles
+		$('.clickable-article').on('click', function() {
+			// window.location.href = 'about.html';
+		});
+
 	// Dropdowns.
 		$('#nav > ul').dropotron({
 			mode: 'fade',
