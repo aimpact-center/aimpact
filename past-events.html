@@ -173,34 +173,7 @@
 				  
 						<!-- Page 1 -->
 						<div class="page-container">
-						  <!-- Card 1 -->
-						  <div class="publication-card">
-							<div class="card-content">
-							  <h3>Interdisciplinary Seminar on the Impact of AI</h3>
-							  <p>Fall 2024 - Spring 2025</p>
-							  <ul class="actions">
-								<li><a href="events/interdisciplinary-seminar.html" class="button">Read More</a></li>
-							  </ul>
-							</div>
-							<div class="card-image" style="padding-left: 1em;">
-							  <img src="events/images/veldkamp.png" alt="Interdisciplinary Seminar Series - Event Photo">
-							</div>
-						  </div>
-						  
-						  <!-- Card 2 -->
-						  <div class="publication-card">
-							<div class="card-content">
-							  <h3>Resek Conference</h3>
-							  <p>Friday April 5, 2024</p>
-							  <ul class="actions">
-								<li><a href="events/resek-conference.html" class="button">Read More</a></li>
-							  </ul>
-							</div>
-							<div class="card-image" style="padding-left: 1em;">
-							  <img src="events/images/resek-conference-2024.png" alt="Resek Conference on AI and Society - Event Photo">
-							</div>
-						  </div>
-			
+						  <!-- Cards will be dynamically inserted here -->
 						</div>
 				  
 					  </div>
@@ -219,6 +192,68 @@
 				  <script>
 					let currentPage = 0;
 					const totalPages = 1;
+
+					// Past Event Card Template
+					function createPastEventCard(title, date, description, link, imageUrl, imageAlt) {
+						return `
+						<div class="publication-card">
+							<div class="card-content">
+								<h3>${title}</h3>
+								<p><strong>Date: </strong>${date}</p>
+								<p>${description}</p>
+								<ul class="actions">
+									<li><a href="${link}" class="button">Read More</a></li>
+								</ul>
+							</div>
+							<div class="card-image" style="padding-left: 1em;">
+								<img src="${imageUrl}" alt="${imageAlt}">
+							</div>
+						</div>
+						`;
+					}
+
+					// Example usage:
+					function renderPastEvents() {
+						const pastEvents = [
+							{
+								title: "Interdisciplinary Seminar on the Impact of AI",
+								date: "Fall 2024 - Spring 2025",
+								description: "A series of seminars featuring leading researchers discussing the societal impact of artificial intelligence across various disciplines.",
+								link: "events/interdisciplinary-seminar.html",
+								imageUrl: "events/images/veldkamp.png",
+								imageAlt: "Interdisciplinary Seminar Series - Event Photo"
+							},
+							{
+								title: "Resek Conference",
+								date: "Friday April 5, 2024",
+								description: "A comprehensive conference exploring the intersection of AI and society, featuring keynote speakers and panel discussions.",
+								link: "events/resek-conference.html",
+								imageUrl: "events/images/resek-conference-2024.png",
+								imageAlt: "Resek Conference on AI and Society - Event Photo"
+							}
+						];
+
+						// Get container for page 1
+						const pageContainer = document.querySelector('.page-container');
+				  
+						// Clear existing content
+						pageContainer.innerHTML = '';
+				  
+						// Render all past events on page 1
+						pastEvents.forEach(event => {
+							pageContainer.innerHTML += createPastEventCard(
+								event.title,
+								event.date,
+								event.description,
+								event.link,
+								event.imageUrl,
+								event.imageAlt
+							);
+						});
+					}
+
+					// Call render function when page loads
+					window.addEventListener('load', renderPastEvents);
 				  
 					function switchPage(pageIndex) {
 					  const slideTrack = document.getElementById('slide-track');
