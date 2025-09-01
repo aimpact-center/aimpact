@@ -239,13 +239,27 @@
 
 					// Event Card Template for individual events
 					function createEventCard(date, speaker, title, description, imageUrl, imageAlt, paperLink = null) {
+						// Generate event page URL based on speaker and date
+						let eventPageUrl = "#";
+						if (speaker.includes("Akshaya Jha")) {
+							eventPageUrl = "events/akshaya-jha-march-2025.html";
+						} else if (speaker.includes("Laura Veldkamp")) {
+							eventPageUrl = "events/laura-veldkamp-march-2025.html";
+						} else if (speaker.includes("Neil Thompson")) {
+							eventPageUrl = "events/neil-thompson-november-2024.html";
+						} else if (speaker.includes("Brian Jabarian")) {
+							eventPageUrl = "events/brian-jabarian-november-2024.html";
+						} else if (speaker.includes("Rad Niazadeh")) {
+							eventPageUrl = "events/rad-niazadeh-september-2024.html";
+						}
+						
 						return `
 						<div class="publication-card">
 							<div class="card-content">
 								<h3>${title}</h3>
 								<h4>${date}: ${speaker}</h4>
 								<ul class="actions">
-									<li><a href="#" class="button">Read More</a></li>
+									<li><a href="${eventPageUrl}" class="button">Read More</a></li>
 								</ul>
 							</div>
 							<div class="card-image" style="padding-left: 1em;">
@@ -358,12 +372,12 @@
 									event.paperLink
 								);
 							} else {
-								// Past event
-								pageContainers[0].innerHTML += createEventCard(
-									event.date,
-									"Event",
+								// Past event - use createPastEventCard for these
+								pageContainers[0].innerHTML += createPastEventCard(
 									event.title,
+									event.date,
 									event.description,
+									event.link,
 									event.imageUrl,
 									event.imageAlt
 								);
@@ -391,12 +405,12 @@
 											event.paperLink
 										);
 									} else {
-										// Past event
-										pageContainers[i].innerHTML += createEventCard(
-											event.date,
-											"Event",
+										// Past event - use createPastEventCard for these
+										pageContainers[i].innerHTML += createPastEventCard(
 											event.title,
+											event.date,
 											event.description,
+											event.link,
 											event.imageUrl,
 											event.imageAlt
 										);
