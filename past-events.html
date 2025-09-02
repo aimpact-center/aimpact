@@ -119,6 +119,12 @@
 					  gap: 0.5em;
 					  flex-wrap: wrap;
 					}
+					
+					#page-buttons {
+					  display: flex;
+					  gap: 0.5em;
+					  align-items: center;
+					}
 				  
 					.pagination button {
 					  background: #444;
@@ -137,6 +143,14 @@
 					.arrow-btn {
 					  font-size: 1.2em;
 					  padding: 0.6em 1em;
+					}
+
+					.school-year-header {
+					  margin-top: 2em;
+					  margin-bottom: 1em;
+					  padding-bottom: 0.5em;
+					  border-bottom: 2px solid #df7366;
+					  color: #444;
 					}
 				  
 					@media screen and (max-width: 768px) {
@@ -164,7 +178,8 @@
 				
 				  <section class="container">
 					<header style="padding: 2em;">
-					  <h2>Past Events</h2>
+					  <h2>Interdisciplinary Seminar on the Impact of AI</h2>
+					  <h4><i>Fall 2024 - Spring 2025</i></h4>
 					  <p>Explore our archive of past events showcasing thought-provoking discussions and groundbreaking research on the impact of AI across disciplines.</p>
 					</header>
 				  
@@ -173,34 +188,17 @@
 				  
 						<!-- Page 1 -->
 						<div class="page-container">
-						  <!-- Card 1 -->
-						  <div class="publication-card">
-							<div class="card-content">
-							  <h3>Interdisciplinary Seminar on the Impact of AI</h3>
-							  <p>Fall 2024 - Spring 2025</p>
-							  <ul class="actions">
-								<li><a href="events/interdisciplinary-seminar.html" class="button">Read More</a></li>
-							  </ul>
-							</div>
-							<div class="card-image" style="padding-left: 1em;">
-							  <img src="events/images/veldkamp.png" alt="Interdisciplinary Seminar Series - Event Photo">
-							</div>
-						  </div>
-						  
-						  <!-- Card 2 -->
-						  <div class="publication-card">
-							<div class="card-content">
-							  <h3>Resek Conference</h3>
-							  <p>Friday April 5, 2024</p>
-							  <ul class="actions">
-								<li><a href="events/resek-conference.html" class="button">Read More</a></li>
-							  </ul>
-							</div>
-							<div class="card-image" style="padding-left: 1em;">
-							  <img src="events/images/resek-conference-2024.png" alt="Resek Conference on AI and Society - Event Photo">
-							</div>
-						  </div>
-			
+						  <!-- Cards will be dynamically inserted here -->
+						</div>
+
+						<!-- Page 2 -->
+						<div class="page-container">
+						  <!-- Cards will be dynamically inserted here -->
+						</div>
+
+						<!-- Page 3 -->
+						<div class="page-container">
+						  <!-- Cards will be dynamically inserted here -->
 						</div>
 				  
 					  </div>
@@ -209,16 +207,239 @@
 					<!-- Pagination -->
 					<div class="pagination" style="padding-bottom: 2em;">
 					  <button class="arrow-btn" onclick="previousPage()">←</button>
-					  <button id="btn-page-1" class="active" onclick="switchPage(0)">1</button>
-					  <!-- <button id="btn-page-2" onclick="switchPage(1)">2</button> -->
+					  <div id="page-buttons">
+						<button id="btn-page-1" class="active" onclick="switchPage(0)">1</button>
+					  </div>
 					  <button class="arrow-btn" onclick="nextPage()">→</button>
 					</div>
 				  </section>
 				  
 				
-				  <script>
+				  					<script>
 					let currentPage = 0;
-					const totalPages = 1;
+					let totalPages = 1;
+
+					// Past Event Card Template
+					function createPastEventCard(title, date, description, link, imageUrl, imageAlt) {
+						return `
+						<div class="publication-card">
+							<div class="card-content">
+								<h3>${title}</h3>
+								<p><strong>Date: </strong>${date}</p>
+								<ul class="actions">
+									<li><a href="${link}" class="button">Read More</a></li>
+								</ul>
+							</div>
+							<div class="card-image" style="padding-left: 1em;">
+								<img src="${imageUrl}" alt="${imageAlt}">
+							</div>
+						</div>
+						`;
+					}
+
+					// Event Card Template for individual events
+					function createEventCard(date, speaker, title, description, imageUrl, imageAlt, paperLink = null) {
+						// Generate event page URL based on speaker and date
+						let eventPageUrl = "#";
+						if (speaker.includes("Akshaya Jha")) {
+							eventPageUrl = "events/akshaya-jha-march-2025.html";
+						} else if (speaker.includes("Laura Veldkamp")) {
+							eventPageUrl = "events/laura-veldkamp-march-2025.html";
+						} else if (speaker.includes("Neil Thompson")) {
+							eventPageUrl = "events/neil-thompson-november-2024.html";
+						} else if (speaker.includes("Brian Jabarian")) {
+							eventPageUrl = "events/brian-jabarian-november-2024.html";
+						} else if (speaker.includes("Rad Niazadeh")) {
+							eventPageUrl = "events/rad-niazadeh-september-2024.html";
+						}
+						
+						return `
+						<div class="publication-card">
+							<div class="card-content">
+								<h3>${title}</h3>
+								<h4>${date}: ${speaker}</h4>
+								<ul class="actions">
+									<li><a href="${eventPageUrl}" class="button">Read More</a></li>
+								</ul>
+							</div>
+							<div class="card-image" style="padding-left: 1em;">
+								<img src="${imageUrl}" alt="${imageAlt}">
+							</div>
+						</div>
+						`;
+					}
+
+					// Example usage:
+					function renderPastEvents() {
+						const pastEvents = [
+							{
+								title: "Interdisciplinary Seminar on the Impact of AI",
+								date: "Fall 2024 - Spring 2025",
+								description: "A series of seminars featuring leading researchers discussing the societal impact of artificial intelligence across various disciplines.",
+								link: "events/interdisciplinary-seminar.html",
+								imageUrl: "events/images/veldkamp.png",
+								imageAlt: "Interdisciplinary Seminar Series - Event Photo"
+							},
+							{
+								title: "Resek Conference",
+								date: "Friday April 5, 2024",
+								description: "A comprehensive conference exploring the intersection of AI and society, featuring keynote speakers and panel discussions.",
+								link: "events/resek-conference.html",
+								imageUrl: "events/images/resek-conference-2024.png",
+								imageAlt: "Resek Conference on AI and Society - Event Photo"
+							}
+						];
+
+						const spring2025Events = [
+							{
+								date: "March 7",
+								speaker: "Akshaya Jha (CMU)",
+								title: "Estimating electricity market responses to changes in demand",
+								description: "Data centers consumed 4% of total U.S. electricity production in 2023 and are expected to consume approximately 7-12% of total U.S. electricity production by 2028 (LBNL, 2024). The sheer scale of data center electricity demand combined with the propensity to collocate with power plants poses unique challenges to grid operations. In this talk, I cover two approaches to modeling changes in power plant dispatch in response to rising electricity demand: operations research dispatch models and machine learning models. To illustrate these approaches, I cover applications to rooftop solar penetration in Australia and Germany's nuclear phase-out: 1. Firms expect to recover the fixed costs required to start production by earning positive operating profits in subsequent periods. We develop a dynamic competitive benchmark that accounts for start-up costs, showing that static markups overstate the rents attributable to market power in an electricity market where generators frequently stop and start production in response to rooftop solar output. We demonstrate that the large-scale expansion of solar capacity can lead to increases in the collective profitability of fossil fuel plants because competition softens at sunset—plants displaced by solar during the day must incur start-up costs to compete in the evening. 2: Many countries have phased out nuclear power in response to concerns about nuclear waste and the risk of nuclear accidents. This paper examines the shutdown of more than half of the nuclear production capacity in Germany after the Fukushima accident in 2011. We use hourly data on power plant operations and a machine learning approach to estimate the impacts of the phase-out policy. We find that reductions in nuclear electricity production were offset primarily by increases in coal-fired production and net electricity imports. Our estimates of the social cost of the phase-out range from €3 to €8 billion per year. The majority of this cost comes from the increased mortality risk associated with exposure to the local air pollution emitted when burning fossil fuels. Policymakers would have to significantly overestimate the risk or cost of a nuclear accident to conclude that the benefits of the phase-out exceed its social costs. We discuss the likely role of behavioral biases in this setting, and highlight the importance of ensuring that policymakers and the public are informed about the health effects of local air pollution.",
+								imageUrl: "events/images/jha.png",
+								imageAlt: "Akshaya Jha - Speaker Profile"
+							},
+							{
+								date: "March 3",
+								speaker: "Laura Veldkamp (Columbia Business School)",
+								title: "Valuing Firms' Data Assets",
+								description: "The modern economy increasingly revolves around data, yet its value remains largely unmeasured. We explore why traditional economic metrics fail to capture the value of data, how firms implicitly barter data and bundle it with other transactions, and how mismeasurement impacts GDP and productivity estimates. We introduce key tools for measuring data value—using value functions, complementary inputs, and revenue effects —and discuss the role of forecast errors in assessing firms' data-driven gains. The findings highlight the evolving landscape of data ownership, the growing economic significance of data across industries, and the potential for data democratization. By refining our measurement frameworks, we can better understand data's impact on firm productivity, market power, and economic policy.",
+								imageUrl: "events/images/veldkamp.png",
+								imageAlt: "Laura Veldkamp - Speaker Profile",
+								paperLink: "https://business.columbia.edu/faculty/research/valuing-data-asset"
+							}
+						];
+
+						const fall2024Events = [
+							{
+								date: "November 22",
+								speaker: "Neil Thompson (MIT)",
+								title: "Beyond AI Exposure: Which Tasks are Cost-Effective to Automate with Computer Vision?",
+								description: "The faster AI automation spreads through the economy, the more profound its potential impacts, both positive (improved productivity) and negative (worker displacement). The previous literature on \"AI Exposure\" cannot predict this pace of automation since it attempts to measure an overall potential for AI to affect an area, not the technical feasibility and economic attractiveness of building such systems. In this article, we present a new type of AI task automation model that is end-to-end, estimating: the level of technical performance needed to do a task, the characteristics of an AI system capable of that performance, and the economic choice of whether to build and deploy such a system. The result is a first estimate of which tasks are technically feasible and economically attractive to automate – and which are not. We focus on computer vision, where cost modeling is more developed. We find that at today's costs U.S. businesses would choose not to automate most vision tasks that have \"AI Exposure,\" and that only 23% of worker wages being paid for vision tasks would be attractive to automate. This slower roll-out of AI can be accelerated if costs falls rapidly or if it is deployed via AI-as-a-service platforms that have greater scale than individual firms, both of which we quantify. Overall, our findings suggest that AI job displacement will be substantial, but also gradual – and therefore there is room for policy and retraining to mitigate unemployment impacts.",
+								imageUrl: "events/images/thompson.jpg",
+								imageAlt: "Neil Thompson - Speaker Profile",
+								paperLink: "https://papers.ssrn.com/sol3/papers.cfm?abstract_id=4700751"
+							},
+							{
+								date: "November 15",
+								speaker: "Brian Jabarian (Chicago)",
+								title: "Critical Thinking and Storytelling Contexts",
+								description: "In this paper, we show that storytelling contexts, i.e., sources, designs, writing styles and delivery of information, impact the effectiveness of surveys and elections in eliciting preferences formed by critical thinking (reasoned preferences). Through an artefactual field experiment with a US sample (N=725), incentivized by an LLM, we find that intermediate storytelling contexts prompt critical thinking more effectively than basic or sophisticated ones. Participants with high need-for-cognition are particularly responsive to these contexts. In a conceptual framework, we explore how critical thinkers impact the efficiency of elections and polls in aggregating reasoned preferences. Storytelling contexts that effectively prompt critical thinking improve election efficiency.",
+								imageUrl: "events/images/jabarian.jpeg",
+								imageAlt: "Brian Jabarian - Speaker Profile",
+								paperLink: "https://papers.ssrn.com/sol3/papers.cfm?abstract_id=4991780"
+							},
+							{
+								date: "September 20",
+								speaker: "Rad Niazadeh (Chicago Booth)",
+								title: "Markovian Search with Socially-aware Constraints",
+								description: "In this talk, we study a general class of constrained sequential search problems for selecting multiple candidates from a pool that belongs to different societal groups. The focus is on ex-ante constraints aimed at promoting socially desirable and diverse outcomes, e.g. demographic parity and quotas. I start with a canonical search model, known as the Pandora's box under a single affine constraint on selection and inspection probabilities of candidates. We show that the optimal policy for such a constrained problem retains the index-based structure of the optimal policy for the unconstrained one but potentially randomizes between two policies that are dual-based adjustments of the unconstrained problem; thus, they are easy to compute and economically interpretable. Building on these insights, we consider the richer class of search processes, such as search with rejection and multistage search, that can be modeled by joint Markov scheduling (JMS). Imposing general affine and convex ex-ante constraints, we give a primal-dual algorithm to find a near-feasible and near-optimal policy. This algorithm, too, randomizes over polynomial number of index-based policies, whose indices are dual-based adjustments to the Gittins indices of the unconstrained JMS. Our algorithmic developments involve many intricacies which I will explore as much as time permits. Finally, using a numerical case study, we investigate the implications of imposing various constraints, the price of imposing them in terms of utilitarian loss, and whether they induce their intended societally desirable outcomes.",
+								imageUrl: "events/images/niazadeh.jpeg",
+								imageAlt: "Rad Niazadeh - Speaker Profile",
+								paperLink: "https://papers.ssrn.com/sol3/papers.cfm?abstract_id=4347447"
+							}
+						];
+
+						// Combine all 2024-2025 events
+						const all2024Events = [
+							...spring2025Events,
+							...pastEvents,
+							...fall2024Events
+						];
+						
+						// Calculate total pages needed (5 events per page)
+						totalPages = Math.ceil(all2024Events.length / 5);
+						
+						// Get containers for all pages
+						const pageContainers = document.querySelectorAll('.page-container');
+				  
+						// Clear existing content
+						pageContainers.forEach(container => container.innerHTML = '');
+						
+						// Render page 1: 2025-2026 School Year + first 5 events from 2024-2025
+						pageContainers[0].innerHTML = '<h3 class="school-year-header">2025-2026 School Year</h3>';
+						pageContainers[0].innerHTML += '<h3 class="school-year-header">2024-2025 School Year</h3>';
+						all2024Events.slice(0, 5).forEach(event => {
+							if (event.speaker) {
+								// Individual event
+								pageContainers[0].innerHTML += createEventCard(
+									event.date,
+									event.speaker,
+									event.title,
+									event.description,
+									event.imageUrl,
+									event.imageAlt,
+									event.paperLink
+								);
+							} else {
+								// Past event - use createPastEventCard for these
+								pageContainers[0].innerHTML += createPastEventCard(
+									event.title,
+									event.date,
+									event.description,
+									event.link,
+									event.imageUrl,
+									event.imageAlt
+								);
+							}
+						});
+						
+						// Render additional pages if needed
+						for (let i = 1; i < totalPages; i++) {
+							const startIndex = i * 5;
+							const endIndex = startIndex + 5;
+							const pageEvents = all2024Events.slice(startIndex, endIndex);
+							
+							if (pageEvents.length > 0) {
+								pageContainers[i].innerHTML = '<h3 class="school-year-header">2024-2025 School Year</h3>';
+								pageEvents.forEach(event => {
+									if (event.speaker) {
+										// Individual event
+										pageContainers[i].innerHTML += createEventCard(
+											event.date,
+											event.speaker,
+											event.title,
+											event.description,
+											event.imageUrl,
+											event.imageAlt,
+											event.paperLink
+										);
+									} else {
+										// Past event - use createPastEventCard for these
+										pageContainers[i].innerHTML += createPastEventCard(
+											event.title,
+											event.date,
+											event.description,
+											event.link,
+											event.imageUrl,
+											event.imageAlt
+										);
+									}
+								});
+							}
+						}
+						
+						// Update pagination buttons
+						updatePaginationButtons();
+					}
+
+					// Function to update pagination buttons
+					function updatePaginationButtons() {
+						const pageButtonsContainer = document.getElementById('page-buttons');
+						pageButtonsContainer.innerHTML = '';
+						
+						for (let i = 0; i < totalPages; i++) {
+							const button = document.createElement('button');
+							button.id = `btn-page-${i + 1}`;
+							button.onclick = () => switchPage(i);
+							button.textContent = i + 1;
+							if (i === 0) button.classList.add('active');
+							pageButtonsContainer.appendChild(button);
+						}
+					}
+
+					// Call render function when page loads
+					window.addEventListener('load', renderPastEvents);
 				  
 					function switchPage(pageIndex) {
 					  const slideTrack = document.getElementById('slide-track');
