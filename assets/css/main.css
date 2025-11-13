@@ -2608,11 +2608,11 @@ input, select, textarea {
 
 		.carousel article {
 			display: inline-block;
-			width: 18em;
+			width: 22em;
 			background: #fff;
 			text-align: center;
-			padding: 0 1em 3em 1em;
-			margin: 0 2em 0 0;
+			padding: 0 1.5em 3em 1.5em;
+			margin: 0 1.5em 0 0;
 			white-space: normal;
 			opacity: 1.0;
 			-moz-transition: opacity 0.75s ease-in-out;
@@ -2621,18 +2621,27 @@ input, select, textarea {
 			transition: opacity 0.75s ease-in-out;
 		}
 
+			.carousel article:last-child {
+				margin-right: 0;
+			}
+
 			.carousel article.loading {
 				opacity: 0;
 			}
 
-			.carousel article, .image {
-				position: relative;
-				left: -1em;
-				top: 0;
-				width: auto;
-				margin-right: -2em;
-				margin-bottom: 3em;
+			.carousel article .image {
+				display: block;
+				width: 100%;
+				aspect-ratio: 3 / 4;
+				margin: 0 0 2em 0;
+				overflow: hidden;
 			}
+
+				.carousel article .image img {
+					width: 100%;
+					height: 100%;
+					object-fit: cover;
+				}
 
 			.carousel article, p {
 				text-align: center;
@@ -2660,7 +2669,7 @@ input, select, textarea {
 				}
 
 				.carousel article {
-					width: 18em;
+					width: 20em;
 					margin: 0 1.25em 0 0;
 				}
 
