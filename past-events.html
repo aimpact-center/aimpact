@@ -392,7 +392,7 @@
 						pageContainers.forEach(container => container.innerHTML = '');
 						
 						// Render page 1: 2025-2026 School Year + first 5 events from 2024-2025
-						pageContainers[0].innerHTML = '<h3 class="school-year-header">2025-2026 School Year</h3>';
+						pageContainers[0].innerHTML = '<h3 class="school-year-header">2025-2026 Academic Year</h3>';
 
 						fall2025Events.forEach(event => {
 							pageContainers[0].innerHTML += createEventCard(
@@ -406,7 +406,7 @@
 							);
 						});
 
-						pageContainers[0].innerHTML += '<h3 class="school-year-header">2024-2025 School Year</h3>';
+						pageContainers[0].innerHTML += '<h3 class="school-year-header">2024-2025 Academic Year</h3>';
 						all2024Events.slice(0, 5).forEach(event => {
 							if (event.speaker) {
 								// Individual event
@@ -439,7 +439,7 @@
 							const pageEvents = all2024Events.slice(startIndex, endIndex);
 							
 							if (pageEvents.length > 0) {
-								pageContainers[i].innerHTML = '<h3 class="school-year-header">2024-2025 School Year</h3>';
+								pageContainers[i].innerHTML = '<h3 class="school-year-header">2024-2025 Academic Year</h3>';
 								pageEvents.forEach(event => {
 									if (event.speaker) {
 										// Individual event
