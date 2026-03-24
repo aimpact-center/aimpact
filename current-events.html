@@ -80,30 +80,30 @@
 						  box-sizing: border-box;
 						  overflow: hidden;
 						}
-					  
+
 						.card-content {
 						  flex: 1 1 45%;
 						  min-width: 200px;
 						  box-sizing: border-box;
 						  text-align: left;
 						}
-					  
+
 						.card-content h3 {
 						  margin-bottom: 0.5em;
 						  text-align: left;
 						}
-					  
+
 						.card-content h4 {
 						  margin-bottom: 1em;
 						  text-align: left;
 						  font-weight: bold;
 						}
-					  
+
 						.card-content p {
 						  text-align: left;
 						  line-height: 1.6;
 						}
-					  
+
 						.card-image {
 						  flex: 0 0 350px;
 						  max-width: 350px;
@@ -112,34 +112,34 @@
 						  align-items: center;
 						  justify-content: center;
 						}
-					  
+
 						.card-image img {
 						  width: 100%;
 						  height: auto;
 						  border-radius: 0.3em;
 						  display: block;
 						}
-					  
+
 						.slider-wrapper {
 						  overflow: hidden;
 						  position: relative;
 						  width: 100%;
 						  box-sizing: border-box;
 						}
-					  
+
 						.slide-track {
 						  display: flex;
 						  transition: transform 0.5s ease;
 						  width: 100%;
 						}
-					  
+
 						.page-container {
 						  width: 100%;
 						  flex-shrink: 0;
 						  padding: 0 1em;
 						  box-sizing: border-box;
 						}
-					  
+
 						.pagination {
 						  text-align: center;
 						  margin-top: 2em;
@@ -149,7 +149,7 @@
 						  gap: 0.5em;
 						  flex-wrap: wrap;
 						}
-					  
+
 						.pagination button {
 						  background: #444;
 						  color: #fff;
@@ -159,35 +159,35 @@
 						  cursor: pointer;
 						  font-size: 1em;
 						}
-					  
+
 						.pagination button.active {
 						  background: #df7366;
 						}
-					  
+
 						.arrow-btn {
 						  font-size: 1.2em;
 						  padding: 0.6em 1em;
 						}
-					  
+
 						@media screen and (max-width: 768px) {
 						  .event-card {
 							flex-direction: column;
 							align-items: flex-start;
 						  }
-					  
+
 						  .card-image {
 							margin-left: 0;
 							margin-top: 1em;
 							width: 100%;
 							max-width: 100%;
 						  }
-					  
+
 						  .card-image img {
 							width: 100%;
 						  }
 						}
 					  </style>
-					  
+
 					  <div class="slider-wrapper">
 						<div id="slide-track" class="slide-track">
 							<!-- Page 1 -->
@@ -196,17 +196,38 @@
 							</div>
 						</div>
 					  </div>
-					  
+
 					  <!-- Pagination -->
 					  <div class="pagination" style="padding-bottom: 2em;">
 						<button class="arrow-btn" onclick="previousPage()">←</button>
 						<button id="btn-page-1" class="active" onclick="switchPage(0)">1</button>
 						<button class="arrow-btn" onclick="nextPage()">→</button>
 					  </div>
-					  
+
 					  <script>
 						let currentPage = 0;
 						const totalPages = 1;
+
+						// Workshop Card Template (links to a dedicated event page)
+						function createWorkshopCard(title, theme, date1, date2, location, link) {
+							return `
+							<div class="event-card">
+								<div class="card-content">
+									<h3>${title}</h3>
+									<h4>${theme}</h4>
+									<p>
+										<strong>Dates &amp; Times:</strong><br>
+										${date1}<br>
+										${date2}
+									</p>
+									<p><strong>Location:</strong> ${location}</p>
+									<ul class="actions" style="margin-top: 1em;">
+										<li><a href="${link}" class="button">Learn More</a></li>
+									</ul>
+								</div>
+							</div>
+							`;
+						}
 
 						// Event Card Template
 						function createEventCard(date, speaker, title, description, imageUrl, imageAlt, paperLink = null) {
@@ -214,7 +235,7 @@
 							if (paperLink) {
 								paperLinkHtml = `<br><a href="${paperLink}"><b>Click here to view the full paper.</b></a>`;
 							}
-							
+
 							return `
 							<div class="event-card">
 								<div class="card-content">
@@ -229,22 +250,30 @@
 							`;
 						}
 
-						// Example usage:
 						function renderEvents() {
 							const events = [
+								{
+									type: 'workshop',
+									title: '2026 AImpact Workshop',
+									theme: 'How AI Shapes How We Think, Learn, and Work',
+									date1: 'April 30 &nbsp;|&nbsp; 8:30 AM \u2013 4:30 PM',
+									date2: 'May 1 &nbsp;|&nbsp; 8:30 AM \u2013 11:30 AM',
+									location: 'Illini Union Hall, Room 314AB',
+									link: 'events/aimpact-workshop-2026.html'
+								},
 								{
 									date: "February 12",
 									speaker: "Dashun Wang (Northwestern)",
 									title: "Airplanes for the mind",
-									description: "Steve Jobs famously called computers “bicycles for the mind”—a metaphor for the personal-computing era, emphasizing tools that let individuals go farther and faster with less effort. Today, AI agents demand a new metaphor. They are airplanes for the mind: heavier-than-air machines that should not fly but do. These “airplanes” have the potential to dramatically extend the scale, speed, and coordination of human cognition, while introducing new challenges for science and discovery. This talk will focus on these “airplanes” and ask what changes for science when AI systems move from passive tools to active partners. Drawing on research from the science of science, I examine how advances in AI reshape discovery by surfacing overlooked ideas, reducing search and coordination costs, and revealing vast reservoirs of untapped innovative potential. I also show that scientific and technological progress is inherently punctuated, and discuss how these AI systems may alter incentives, attention, and pathways of collective scientific progress, raising new challenges for how science is conducted and evaluated. Throughout history, discoveries have been made by humans. As AI systems increasingly participate in discovery, the central question is not what machines can do alone, but how we design human–AI collaboration to make science more accountable, reproducible, and ultimately transformative. The question is not whether machines replace scientists, but what kind of scientist emerges when we learn to fly.<br><br>Dashun Wang is the Kellogg Chair of Technology and Professor at the Kellogg School of Management, Northwestern University. He is also affiliated with the McCormick School of Engineering and the Weinberg College of Arts and Sciences. At Kellogg, he is the Founding Director of the Northwestern Innovation Institute, Founding Co-Director of the Ryan Institute on Complexity, and the Founding Director of the Center for Science of Science and Innovation (CSSI). Dashun is a recipient of numerous awards for his research and teaching, including the Advanced Science Young Innovator Award, AFOSR Young Investigator Award, Poets & Quants Best 40 Under 40 Professors, Erdos-Renyi Prize, and more.",
+									description: `Steve Jobs famously called computers \u201Cbicycles for the mind\u201D\u2014a metaphor for the personal-computing era, emphasizing tools that let individuals go farther and faster with less effort. Today, AI agents demand a new metaphor. They are airplanes for the mind: heavier-than-air machines that should not fly but do. These \u201Cairplanes\u201D have the potential to dramatically extend the scale, speed, and coordination of human cognition, while introducing new challenges for science and discovery. This talk will focus on these \u201Cairplanes\u201D and ask what changes for science when AI systems move from passive tools to active partners. Drawing on research from the science of science, I examine how advances in AI reshape discovery by surfacing overlooked ideas, reducing search and coordination costs, and revealing vast reservoirs of untapped innovative potential. I also show that scientific and technological progress is inherently punctuated, and discuss how these AI systems may alter incentives, attention, and pathways of collective scientific progress, raising new challenges for how science is conducted and evaluated. Throughout history, discoveries have been made by humans. As AI systems increasingly participate in discovery, the central question is not what machines can do alone, but how we design human\u2013AI collaboration to make science more accountable, reproducible, and ultimately transformative. The question is not whether machines replace scientists, but what kind of scientist emerges when we learn to fly.<br><br>Dashun Wang is the Kellogg Chair of Technology and Professor at the Kellogg School of Management, Northwestern University. He is also affiliated with the McCormick School of Engineering and the Weinberg College of Arts and Sciences. At Kellogg, he is the Founding Director of the Northwestern Innovation Institute, Founding Co-Director of the Ryan Institute on Complexity, and the Founding Director of the Center for Science of Science and Innovation (CSSI). Dashun is a recipient of numerous awards for his research and teaching, including the Advanced Science Young Innovator Award, AFOSR Young Investigator Award, Poets &amp; Quants Best 40 Under 40 Professors, Erdos-Renyi Prize, and more.`,
 									imageUrl: "events/images/wang.png",
 									imageAlt: "Dashun Wang - Speaker Profile"
 								},
 								{
 									date: "March 5",
 									speaker: "Joel Waldfogel (Minnesota)",
-									title: "AI and the quantity and quality of creative products:  have LLMs boosted creation of valuable books?",
-									description: "With the diffusion of LLMs between 2022 and 2025, new book releases have tripled, raising a question of AI's impact on book quality. We develop a ratings-based usage measure that is comparable across book release vintages, and we find that the vintages from the AI influx period have lower average quality. Yet, the top 1,000 monthly releases per category - albeit not the top 100 - have higher quality than before; and the effect is larger in categories with faster growth in new titles. Authors entering since the LLM influx produce predominantly low-quality work; and the higher-quality output of pre-LLM authors entrants has risen. A nested logit calibration shows that LLM-enhanced book production could, in steady state, raise the surplus that consumers derive from book markets by a quarter to a half.",
+									title: "AI and the quantity and quality of creative products:  have LLMs boosted creation of valuable books?",
+									description: `With the diffusion of LLMs between 2022 and 2025, new book releases have tripled, raising a question of AI\u2019s impact on book quality. We develop a ratings-based usage measure that is comparable across book release vintages, and we find that the vintages from the AI influx period have lower average quality. Yet, the top 1,000 monthly releases per category - albeit not the top 100 - have higher quality than before; and the effect is larger in categories with faster growth in new titles. Authors entering since the LLM influx produce predominantly low-quality work; and the higher-quality output of pre-LLM authors entrants has risen. A nested logit calibration shows that LLM-enhanced book production could, in steady state, raise the surplus that consumers derive from book markets by a quarter to a half.`,
 									imageUrl: "events/images/waldfogel.png",
 									imageAlt: "Joel Waldfogel - Speaker Profile"
 								},
@@ -252,7 +281,7 @@
 									date: "April 9",
 									speaker: "Alex Moehring (Purdue)",
 									title: "Designing Human-AI Collaboration: A Sufficient Statistic Approach",
-									description: "We develop a sufficient-statistic approach to designing collaborative human-AI decision-making policies in classification problems, where AI predictions can be used to either automate decisions or selectively assist humans. The approach allows for endogenous and biased beliefs, and effort crowd-out, without imposing a structural model of human decision-making. We deploy and validate our approach in an online fact-checking experiment. We find that humans under-respond to AI predictions and reduce effort when presented with confident AI predictions. AI under-response stems more from human overconfidence in own-signal precision than from under-confidence in AI. The optimal policy automates cases where the AI is confident and delegates uncertain cases to humans while fully disclosing the AI prediction. Although automation is valuable, the additional benefit from assisting humans with AI predictions is negligible.<br><br>Alex is an assistant professor at the Daniels School of Business at Purdue University. His research focuses on the economics of digitization with an emphasis on digital platforms, Human-AI interaction, and social influence.<br><br>Alex holds a PhD from the MIT Sloan School of Management in addition to a BS in Business Administration and BA in Economics from the University of North Carolina at Chapel Hill. He has also worked as a research assistant at Microsoft Research and an analyst at Wells Fargo Securities.",
+									description: `We develop a sufficient-statistic approach to designing collaborative human-AI decision-making policies in classification problems, where AI predictions can be used to either automate decisions or selectively assist humans. The approach allows for endogenous and biased beliefs, and effort crowd-out, without imposing a structural model of human decision-making. We deploy and validate our approach in an online fact-checking experiment. We find that humans under-respond to AI predictions and reduce effort when presented with confident AI predictions. AI under-response stems more from human overconfidence in own-signal precision than from under-confidence in AI. The optimal policy automates cases where the AI is confident and delegates uncertain cases to humans while fully disclosing the AI prediction. Although automation is valuable, the additional benefit from assisting humans with AI predictions is negligible.<br><br>Alex is an assistant professor at the Daniels School of Business at Purdue University. His research focuses on the economics of digitization with an emphasis on digital platforms, Human-AI interaction, and social influence.<br><br>Alex holds a PhD from the MIT Sloan School of Management in addition to a BS in Business Administration and BA in Economics from the University of North Carolina at Chapel Hill. He has also worked as a research assistant at Microsoft Research and an analyst at Wells Fargo Securities.`,
 									imageUrl: "events/images/moehring.png",
 									imageAlt: "Alex Moehring - Speaker Profile"
 								}
@@ -260,42 +289,53 @@
 
 							// Get container for page 1
 							const pageContainer = document.querySelector('.page-container');
-					  
+
 							// Clear existing content
 							pageContainer.innerHTML = '';
-					  
+
 							// Render all events on page 1
 							events.forEach(event => {
-								pageContainer.innerHTML += createEventCard(
-									event.date,
-									event.speaker,
-									event.title,
-									event.description,
-									event.imageUrl,
-									event.imageAlt,
-									event.paperLink
-								);
+								if (event.type === 'workshop') {
+									pageContainer.innerHTML += createWorkshopCard(
+										event.title,
+										event.theme,
+										event.date1,
+										event.date2,
+										event.location,
+										event.link
+									);
+								} else {
+									pageContainer.innerHTML += createEventCard(
+										event.date,
+										event.speaker,
+										event.title,
+										event.description,
+										event.imageUrl,
+										event.imageAlt,
+										event.paperLink
+									);
+								}
 							});
 						}
 
 						// Call render function when page loads
 						window.addEventListener('load', renderEvents);
-					  
+
 						function switchPage(pageIndex) {
 							const slideTrack = document.getElementById('slide-track');
 							slideTrack.style.transform = `translateX(-${pageIndex * 100}%)`;
 							currentPage = pageIndex;
-						
+
 							document.querySelectorAll('.pagination button').forEach(btn =>
 								btn.classList.remove('active')
 							);
 							document.getElementById('btn-page-' + (pageIndex + 1)).classList.add('active');
 						}
-					  
+
 						function nextPage() {
 							if (currentPage < totalPages - 1) switchPage(currentPage + 1);
 						}
-					  
+
 						function previousPage() {
 							if (currentPage > 0) switchPage(currentPage - 1);
 						}
@@ -304,7 +344,7 @@
 
 				</div>
 			</div>
-  
+
 
 			<!-- Footer -->
 				<div id="footer">
@@ -318,14 +358,14 @@
 							  <li><a href="research.html">Research</a></li>
 							</ul>
 						  </div>
-					
+
 						  <!-- Center Logo -->
 						  <div class="col-4 col-12-mobile" style="text-align: center;">
 							<span class="image fit" style="max-width: 50px; margin: 0 auto;">
 							  <img src="images/aimpact-logo-testing-dark.png" alt="AImpact Center Logo">
 							</span>
 						  </div>
-					
+
 						  <!-- Right Navigation Links -->
 						  <div class="col-4 col-12-mobile" style="text-align: right;">
 							<ul class="menu">
