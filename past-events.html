@@ -14,6 +14,7 @@
 		<link rel="shortcut icon" type="image/png" href="images/favicon.png">
 	</head>
 	<body class="no-sidebar is-preload">
+		<a href="#main-content" class="skip-link">Skip to main content</a>
 		<div id="page-wrapper">
 
 			<!-- Header -->
@@ -27,12 +28,12 @@
 						</div>
 
 					<!-- Nav -->
-						<nav id="nav">
+						<nav id="nav" aria-label="Main navigation">
 							<ul>
 								<li><a href="/">Home</a></li>
 								<li><a href="about.html">About</a></li>
 								<li>
-									<a href="#">People</a>
+									<a href="#" aria-haspopup="true" aria-expanded="false">People</a>
 									<ul>
 										<li><a href="people-faculty.html">Faculty</a></li>
 										<li><a href="people-students.html">Students</a></li>
@@ -40,7 +41,7 @@
 								</li>
 								<li><a href="research.html">Research</a></li>
 								<li>
-									<a href="#">Events</a>
+									<a href="#" aria-haspopup="true" aria-expanded="false">Events</a>
 									<ul>
 										<li><a href="current-events.html">Current Events</a></li>
 										<li><a href="past-events.html">Past Events</a></li>
@@ -53,6 +54,7 @@
 
 				</div>
 
+				<main id="main-content">
 				<!-- === START: Publications Section === -->
 				<style>
 					.publication-card {
@@ -137,7 +139,7 @@
 					}
 				  
 					.pagination button.active {
-					  background: #df7366;
+					  background: #13294B;
 					}
 				  
 					.arrow-btn {
@@ -149,7 +151,7 @@
 					  margin-top: 2em;
 					  margin-bottom: 1em;
 					  padding-bottom: 0.5em;
-					  border-bottom: 2px solid #df7366;
+					  border-bottom: 2px solid #FF5F05;
 					  color: #444;
 					}
 				  
@@ -184,7 +186,7 @@
 					</header> -->
 				  
 					<div class="slider-wrapper">
-					  <div id="slide-track" class="slide-track">
+					  <div id="slide-track" class="slide-track" aria-live="polite" aria-atomic="false">
 				  
 						<!-- Page 1 -->
 						<div class="page-container">
@@ -206,11 +208,11 @@
 				  
 					<!-- Pagination -->
 					<div class="pagination" style="padding-bottom: 2em;">
-					  <button class="arrow-btn" onclick="previousPage()">←</button>
+					  <button class="arrow-btn" onclick="previousPage()" aria-label="Previous page">←</button>
 					  <div id="page-buttons">
 						<button id="btn-page-1" class="active" onclick="switchPage(0)">1</button>
 					  </div>
-					  <button class="arrow-btn" onclick="nextPage()">→</button>
+					  <button class="arrow-btn" onclick="nextPage()" aria-label="Next page">→</button>
 					</div>
 				  </section>
 				  
@@ -514,6 +516,8 @@
 				  
 				  
 
+			</main>
+
 			<!-- Footer -->
 			<div id="footer">
 				<div class="container">
@@ -544,16 +548,20 @@
 					  </div>
 					</div>
 
-					<!-- Copyright -->
-					<div class="row">
-						<div class="col-12">
-						  <p class="copyright" style="margin-top: 3em; text-align: right;">
-							&copy; HTML5 UP. All rights reserved.
-						  </p>
-						</div>
+					<!-- Copyright & Accessibility -->
+						<div class="row">
+							<div class="col-12">
+							  <p style="margin-top: 2em; text-align: center; font-size: 0.8em;">
+								<strong>University of Illinois Urbana-Champaign</strong> &mdash; AImpact Center
+							  </p>
+							  <p class="copyright" style="margin-top: 0.5em; text-align: right; font-size: 0.75em;">
+								&copy; AImpact Center, University of Illinois Urbana-Champaign. Design: <a href="http://html5up.net" rel="nofollow">HTML5 UP</a>. &nbsp;|&nbsp;
+								<a href="https://oae.illinois.edu/accessibility-barrier-report/">Report an Accessibility Barrier</a>
+							  </p>
+							</div>
+						  </div>
 					  </div>
-				  </div>
-			</div>
+				</div>
 
 		</div>
 

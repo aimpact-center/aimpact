@@ -14,6 +14,7 @@
 		<link rel="shortcut icon" type="image/png" href="images/favicon.png">
 	</head>
 	<body class="no-sidebar is-preload">
+		<a href="#main-content" class="skip-link">Skip to main content</a>
 		<div id="page-wrapper">
 
 			<!-- Header -->
@@ -27,12 +28,12 @@
 						</div>
 
 					<!-- Nav -->
-						<nav id="nav">
+						<nav id="nav" aria-label="Main navigation">
 							<ul>
 								<li><a href="/">Home</a></li>
 								<li><a href="about.html">About</a></li>
 								<li>
-									<a href="#">People</a>
+									<a href="#" aria-haspopup="true" aria-expanded="false">People</a>
 									<ul>
 										<li><a href="people-faculty.html">Faculty</a></li>
 										<li><a href="people-students.html">Students</a></li>
@@ -40,7 +41,7 @@
 								</li>
 								<li><a href="research.html">Research</a></li>
 								<li>
-									<a href="#">Events</a>
+									<a href="#" aria-haspopup="true" aria-expanded="false">Events</a>
 									<ul>
 										<li><a href="current-events.html">Current Events</a></li>
 										<li><a href="past-events.html">Past Events</a></li>
@@ -54,6 +55,7 @@
 				</div>
 
 			<!-- Main -->
+				<main id="main-content">
 				<div class="wrapper style1">
 
 					<div class="container">
@@ -100,6 +102,7 @@
 
 				</div>
 
+			</main>
 			<!-- Footer -->
 			<div id="footer">
 				<div class="container">
@@ -130,16 +133,20 @@
 					  </div>
 					</div>
 
-					<!-- Copyright -->
-					<div class="row">
-						<div class="col-12">
-						  <p class="copyright" style="margin-top: 3em; text-align: right;">
-							&copy; HTML5 UP. All rights reserved.
-						  </p>
-						</div>
+					<!-- Copyright & Accessibility -->
+						<div class="row">
+							<div class="col-12">
+							  <p style="margin-top: 2em; text-align: center; font-size: 0.8em;">
+								<strong>University of Illinois Urbana-Champaign</strong> &mdash; AImpact Center
+							  </p>
+							  <p class="copyright" style="margin-top: 0.5em; text-align: right; font-size: 0.75em;">
+								&copy; AImpact Center, University of Illinois Urbana-Champaign. Design: <a href="http://html5up.net" rel="nofollow">HTML5 UP</a>. &nbsp;|&nbsp;
+								<a href="https://oae.illinois.edu/accessibility-barrier-report/">Report an Accessibility Barrier</a>
+							  </p>
+							</div>
+						  </div>
 					  </div>
-				  </div>
-			</div>
+				</div>
 
 		</div>
 

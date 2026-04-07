@@ -1,5 +1,24 @@
-@import url("https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,300italic,400,400italic,600");
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&family=Source+Serif+Pro:wght@300;400;600&display=swap");
 @import url("fontawesome-all.min.css");
+
+/* Skip Navigation Link - WCAG 2.1 AA / ADA Compliance */
+.skip-link {
+	position: absolute;
+	top: -100px;
+	left: 0;
+	z-index: 9999;
+	background: #13294B;
+	color: #fff !important;
+	padding: 0.75em 1.5em;
+	text-decoration: none;
+	font-weight: 600;
+	border-bottom: none !important;
+	border-radius: 0 0 0.5em 0;
+	transition: top 0.2s ease;
+}
+.skip-link:focus {
+	top: 0;
+}
 
 .clickable-article {
 	cursor: pointer;
@@ -106,7 +125,7 @@ input, select, textarea {
 		color: #5b5b5b;
 		font-size: 15pt;
 		line-height: 1.85em;
-		font-family: 'Source Sans Pro', sans-serif;
+		font-family: 'Montserrat', sans-serif;
 		font-weight: 300;
 	}
 
@@ -124,13 +143,13 @@ input, select, textarea {
 	input, textarea, select {
 		font-size: 15pt;
 		line-height: 1.85em;
-		font-family: 'Source Sans Pro', sans-serif;
+		font-family: 'Montserrat', sans-serif;
 		font-weight: 300;
 	}
 
 	h1, h2, h3, h4, h5, h6 {
 		font-weight: 400;
-		color: #483949;
+		color: #13294B;
 		line-height: 1.25em;
 	}
 
@@ -159,11 +178,22 @@ input, select, textarea {
 
 	strong, b {
 		font-weight: 400;
-		color: #483949;
+		color: #13294B;
 	}
 
 	em, i {
 		font-style: italic;
+	}
+
+	/* Visible focus indicator - WCAG 2.4.7 */
+	a:focus,
+	button:focus,
+	input:focus,
+	select:focus,
+	textarea:focus,
+	[tabindex]:focus {
+		outline: 3px solid #FF5F05;
+		outline-offset: 2px;
 	}
 
 	a {
@@ -177,7 +207,7 @@ input, select, textarea {
 	}
 
 		a:hover {
-			color: #ef8376;
+			color: #FF5F05;
 			border-bottom-color: transparent;
 		}
 
@@ -1954,7 +1984,7 @@ input, select, textarea {
 			}
 
 				ul.icons li a:hover {
-					color: #ef8376;
+					color: #FF5F05;
 				}
 
 /* Form */
@@ -1962,7 +1992,7 @@ input, select, textarea {
 	form label {
 		display: block;
 		font-weight: 400;
-		color: #483949;
+		color: #13294B;
 		margin: 0 0 1em 0;
 	}
 
@@ -1991,7 +2021,7 @@ input, select, textarea {
 		form select:focus,
 		form textarea:focus {
 			background: #fff;
-			border-color: #df7366;
+			border-color: #13294B;
 		}
 
 	form input[type="text"],
@@ -2074,7 +2104,7 @@ input, select, textarea {
 	.button {
 		position: relative;
 		display: inline-block;
-		background: #df7366;
+		background: #13294B;
 		color: #fff;
 		text-align: center;
 		border-radius: 0.5em;
@@ -2082,7 +2112,6 @@ input, select, textarea {
 		padding: 0.65em 3em 0.65em 3em;
 		border: 0;
 		cursor: pointer;
-		outline: 0;
 		font-weight: 300;
 		-moz-transition: background-color 0.35s ease-in-out, color 0.35s ease-in-out, border-bottom-color 0.35s ease-in-out;
 		-webkit-transition: background-color 0.35s ease-in-out, color 0.35s ease-in-out, border-bottom-color 0.35s ease-in-out;
@@ -2096,7 +2125,16 @@ input, select, textarea {
 		button:hover,
 		.button:hover {
 			color: #fff;
-			background: #ef8376;
+			background: #0d1e36;
+		}
+
+		input[type="button"]:focus,
+		input[type="submit"]:focus,
+		input[type="reset"]:focus,
+		button:focus,
+		.button:focus {
+			outline: 3px solid #FF5F05;
+			outline-offset: 2px;
 		}
 
 		input[type="button"].alt,
@@ -2364,7 +2402,11 @@ input, select, textarea {
 					color: inherit;
 					text-decoration: none;
 					border: 0;
-					outline: 0;
+				}
+
+				#nav > ul > li > a:focus {
+					outline: 3px solid #FF5F05;
+					outline-offset: 2px;
 				}
 
 				#nav > ul > li > ul {
@@ -2395,7 +2437,7 @@ input, select, textarea {
 			}
 
 			.dropotron li:hover {
-				color: #ef8376;
+				color: #FF5F05;
 			}
 
 			.dropotron li a, .dropotron li span {
