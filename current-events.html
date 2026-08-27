@@ -211,7 +211,15 @@
 						const totalPages = 1;
 
 						// Workshop Card Template (links to a dedicated event page)
-						function createWorkshopCard(title, theme, date1, date2, location, link) {
+						function createWorkshopCard(title, theme, date1, date2, location, link, imageUrl, imageAlt) {
+							let imageHtml = '';
+							if (imageUrl) {
+								imageHtml = `
+									<div class="card-image">
+										<img src="${imageUrl}" alt="${imageAlt}">
+									</div>
+								`;
+							}
 							return `
 							<div class="event-card">
 								<div class="card-content">
@@ -227,6 +235,7 @@
 										<li><a href="${link}" class="button">Learn More</a></li>
 									</ul>
 								</div>
+								${imageHtml}
 							</div>
 							`;
 						}
@@ -261,6 +270,8 @@
 								date1: 'April 30 &nbsp;|&nbsp; 8:30 AM – 4:30 PM',
 								date2: 'May 1 &nbsp;|&nbsp; 8:30 AM – 11:30 AM',
 								location: 'Illini Union Hall, Room 314AB',
+								imageUrl: "images/2026-workshop-poster.png",
+								imageAlt: "2026 AImpact Workshop Poster",
 								link: 'events/aimpact-workshop-2026.html'
 							},
 							{
@@ -304,7 +315,9 @@
 										event.date1,
 										event.date2,
 										event.location,
-										event.link
+										event.link,
+										event.imageUrl,
+										event.imageAlt
 									);
 								} else {
 									pageContainer.innerHTML += createEventCard(
