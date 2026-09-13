@@ -223,14 +223,23 @@
 
 					// Past Event Card Template
 					function createPastEventCard(title, date, description, link, imageUrl, imageAlt) {
+						let buttonHTML = '';
+						let descriptionHTML = '';
+						if (link && link !== '#') {
+							buttonHTML = `<ul class="actions">
+								<li><a href="${link}" class="button">Read More</a></li>
+							</ul>`;
+						} else {
+							descriptionHTML = `<p style="margin-top: 1em; text-align: left;">${description}</p>`;
+						}
+
 						return `
 						<div class="publication-card">
 							<div class="card-content">
 								<h3>${title}</h3>
 								<p><strong>Date: </strong>${date}</p>
-								<ul class="actions">
-									<li><a href="${link}" class="button">Read More</a></li>
-								</ul>
+								${descriptionHTML}
+								${buttonHTML}
 							</div>
 							<div class="card-image" style="padding-left: 1em;">
 								<img src="${imageUrl}" alt="${imageAlt}">
@@ -254,15 +263,24 @@
 						} else if (speaker.includes("Rad Niazadeh")) {
 							eventPageUrl = "events/rad-niazadeh-september-2024.html";
 						}
-						
+
+						let buttonHTML = '';
+						let descriptionHTML = '';
+						if (eventPageUrl !== "#") {
+							buttonHTML = `<ul class="actions">
+								<li><a href="${eventPageUrl}" class="button">Read More</a></li>
+							</ul>`;
+						} else {
+							descriptionHTML = `<p style="margin-top: 1em; text-align: left;">${description}</p>`;
+						}
+
 						return `
 						<div class="publication-card">
 							<div class="card-content">
 								<h3>${title}</h3>
 								<h4>${date}: ${speaker}</h4>
-								<ul class="actions">
-									<li><a href="${eventPageUrl}" class="button">Read More</a></li>
-								</ul>
+								${descriptionHTML}
+								${buttonHTML}
 							</div>
 							<div class="card-image" style="padding-left: 1em;">
 								<img src="${imageUrl}" alt="${imageAlt}">
